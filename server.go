@@ -1,16 +1,19 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
-const PORT = ":8080"
-
 func main() {
+	var PORT = os.Getenv("PORT")
+
 	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("pong"))
+
+		fmt.Fprintf(w, "pong on port %s", PORT)
 	})
 
 	log.Printf("Server started on port %s", PORT)
