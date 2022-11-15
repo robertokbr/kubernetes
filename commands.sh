@@ -25,5 +25,33 @@ kubectl apply -f ./k8s/deployment.yaml
 
 ## Updating deployment
 
-## getting pod goserver information
+## getting pod goserver information to prove that the image was updated
 kubectl get pods $pod -o yaml
+
+## Tracking deployment history
+kubectl rollout history deployment $deployment
+
+## Rolling back deployment
+kubectl rollout undo deployment $deployment
+
+## Rolling back to a specific revision
+kubectl rollout undo deployment $deployment --to-revision=$revision
+
+## Getting informations about the deployment
+kubectl describe deployment $deployment
+
+## Creating service to expose the pod
+kubectl apply -f ./k8s/service.yaml
+
+## Getting service information
+kubectl get service $service
+
+## Accessing the service
+kubectl port-forward service/$service 8080:8080
+
+### The port specified by the service is the port that the service is exposing to 
+### and the same port that the service is going to redirect to the pod
+### To specify the port that the service is going to redirect to we need to use the targetPort
+
+### Applying configmap to load the environment variables
+kubectl apply -f ./k8s/configmap-env.yaml
