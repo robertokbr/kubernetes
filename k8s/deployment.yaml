@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: pingpong    
-  replicas: 1
+  replicas: 5
   template:
     metadata:
       labels:
@@ -16,9 +16,8 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: "robertokbr/pingpong:latest"
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
+          image: "robertokbr/pingpong:v4"
+          envFrom:
+            - configMapRef:
+                name: pingpong-env
           
