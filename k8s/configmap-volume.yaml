@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pingpong-volume
+data:
+  volume-config: |
+    {
+      "volume": {
+        "name": "pingpong-volume",
+        "hostPath": {
+          "path": "/go/tmp/pingpong-volume/volume.json",
+          "type": "DirectoryOrCreate"
+        }
+      }
+    } 
