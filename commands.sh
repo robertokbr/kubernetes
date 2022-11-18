@@ -55,3 +55,12 @@ kubectl port-forward service/$service 8080:8080
 
 ### Applying configmap to load the environment variables
 kubectl apply -f ./k8s/configmap-env.yaml
+
+### Applying configmap to create files
+kubectl apply -f ./k8s/configmap-volume.yaml
+
+### Entering the pod to check the files
+kubectl exec -it $pod -- bash
+
+### Catching the logs of the pod
+kubectl logs $pod
