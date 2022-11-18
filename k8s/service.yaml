@@ -5,8 +5,9 @@ metadata:
 spec:
   selector:
     app: pingpong
-  type: ClusterIP
+  type: LoadBalancer
   ports: 
   - name: pingpong-service
     port: 8080
+    targetPort: 8080
     protocol: TCP
