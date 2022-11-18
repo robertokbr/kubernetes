@@ -20,4 +20,16 @@ spec:
           envFrom:
             - configMapRef:
                 name: pingpong-env
-          
+            - secretRef:
+                name: pingpong-secret
+          volumeMounts:
+            - mountPath: "/go/tmp/pingpong-volume"
+              name: pingpong-vol
+              readOnly: true
+      volumes: 
+        - name: pingpong-vol
+          configMap:
+            name: pingpong-volume
+            items:
+            - key: volume-config
+              path: volume.json
